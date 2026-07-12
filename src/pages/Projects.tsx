@@ -9,11 +9,11 @@ export default function Projects() {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((project) => (
           <Card key={project.title} interactive className="flex flex-col overflow-hidden">
-            <div className="aspect-[4/3] overflow-hidden bg-page">
+            <div className="flex h-48 items-center justify-center overflow-hidden border-b border-black/5 bg-page p-4">
               <img
                 src={project.image}
                 alt={project.title}
-                className="h-full w-full object-cover transition duration-500 hover:scale-105"
+                className="max-h-full max-w-full object-contain transition duration-500 hover:scale-105"
               />
             </div>
             <div className="flex flex-1 flex-col p-5">

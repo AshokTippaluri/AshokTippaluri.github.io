@@ -29,11 +29,13 @@ export default function Experience() {
               {/* Card */}
               <Card className="flex-1 p-6 md:ml-16 lg:ml-0">
                 <div className="flex items-start gap-4">
-                  <img
-                    src={job.logo}
-                    alt={`${job.company} logo`}
-                    className="h-12 w-12 rounded-lg object-contain"
-                  />
+                  <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-xl border border-black/5 bg-white p-2 shadow-card">
+                    <img
+                      src={job.logo}
+                      alt={`${job.company} logo`}
+                      className="h-full w-full object-contain"
+                    />
+                  </div>
                   <div>
                     <h3 className="font-serif text-xl font-bold text-ink-95">
                       <a href={job.website} target="_blank" rel="noreferrer" className="hover:text-cobalt hover:underline">
