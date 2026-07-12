@@ -1,6 +1,6 @@
 export const personal = {
   name: "Ashok Tippaluri",
-  title: "Site Reliability Engineer | DevOps Specialist",
+  title: "Site Reliability Engineer 2 | DevOps Specialist",
   tagline: "SRE",
   location: "Bangalore, India",
   email: "ashokchandrareddy5@gmail.com",
@@ -74,7 +74,7 @@ export const skills = [
 export const experiences = [
   {
     company: "Dotdash Meredith",
-    role: "Technical Analyst — SRE / DevOps",
+    role: "Site Reliability Engineer 2",
     location: "Bangalore, India",
     period: "July 2022 - Present",
     logo: "/assets/img/Dotdash-Meredith-Logo-Color.png-3-8-22-2.webp",
