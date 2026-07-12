@@ -72,12 +72,12 @@ export const skills = [
   {
     category: "AI Tools",
     items: [
-      { name: "Codex", icon: "/assets/img/ai-tools.svg" },
-      { name: "Claude", icon: "/assets/img/ai-tools.svg" },
-      { name: "Devin", icon: "/assets/img/ai-tools.svg" },
-      { name: "Kiro", icon: "/assets/img/ai-tools.svg" },
-      { name: "Cursor", icon: "/assets/img/ai-tools.svg" },
-      { name: "Windsurf", icon: "/assets/img/ai-tools.svg" },
+      { name: "Codex", icon: "/assets/img/ai-logos/codex.svg" },
+      { name: "Claude", icon: "/assets/img/ai-logos/claude.svg" },
+      { name: "Devin", icon: "/assets/img/ai-logos/devin.svg" },
+      { name: "Kiro", icon: "/assets/img/ai-logos/kiro.svg" },
+      { name: "Cursor", icon: "/assets/img/ai-logos/cursor.svg" },
+      { name: "Windsurf", icon: "/assets/img/ai-logos/windsurf.svg" },
     ],
   },
 ];
