@@ -1,0 +1,152 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Lato:wght@400;700;900&family=JetBrains+Mono:wght@400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --page-bg: #f4f6f9;
+  --ink-95: #131313;
+  --ink-80: #26292e;
+  --ink-65: #3a3d43;
+  --muted: #5c6169;
+  --muted-2: #8a8a8a;
+  --hair: rgba(0, 0, 0, 0.1);
+  --cobalt: #0053c0;
+  --azure: #4294ff;
+  --sky: #e7f2ff;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--ink-95);
+  font-family: "Lato", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, .font-serif {
+  font-family: "Lora", Georgia, serif;
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-black/10 bg-white shadow-card;
+  }
+  .card-interactive {
+    @apply transition-all duration-300;
+  }
+  .card-interactive:hover {
+    transform: translateY(-3px);
+    border-color: rgba(0, 83, 192, 0.35);
+    box-shadow: 0 16px 30px -12px rgba(0, 0, 0, 0.18);
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 font-semibold transition disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn text-white;
+    background: var(--cobalt);
+  }
+  .btn-primary:hover {
+    background: var(--brand-dark, #00429c);
+  }
+  .btn-ghost {
+    @apply btn border border-black/15 bg-white text-ink-80 hover:bg-black/[0.035];
+  }
+  .section-title {
+    @apply text-3xl font-serif font-bold text-ink-95 md:text-4xl;
+  }
+  .section-subtitle {
+    @apply mt-3 text-lg text-muted;
+  }
+  .badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold;
+  }
+  .nav-link {
+    @apply relative text-sm font-medium text-ink-65 transition hover:text-cobalt;
+  }
+  .nav-link.active {
+    @apply text-cobalt;
+  }
+  .nav-link.active::after {
+    content: "";
+    @apply absolute -bottom-1 left-0 h-0.5 w-full rounded-full bg-cobalt;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .animation-delay-150 {
+    animation-delay: 150ms;
+  }
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+  .animation-delay-450 {
+    animation-delay: 450ms;
+  }
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #d7d7d7;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 83, 192, 0.18);
+  color: var(--ink-95);
+}
+
+/* Form inputs */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 1rem;
+  color: var(--ink-95);
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  font-family: inherit;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+textarea:focus {
+  border-color: var(--azure);
+  box-shadow: 0 0 0 3px rgba(66, 148, 255, 0.15);
+}
+
+textarea {
+  resize: vertical;
+}

@@ -1,63 +1,67 @@
-# Personal Portfolio ⚡️ 
-> A clean, beautiful, responsive portfolio template for Software Developers!
+# Ashok Tippaluri Portfolio
 
-> https://ashoktippaluri.github.io
+A modern, multi-page personal portfolio built with **React + TypeScript + Vite + Tailwind CSS** and deployed on GitHub Pages.
 
-![GitHub stars](https://img.shields.io/github/stars/ashoktippaluri/ashoktippaluri.github.io) 
-![GitHub forks](https://img.shields.io/github/forks/ashoktippaluri/ashoktippaluri.github.io)
-[![Maintenance](https://img.shields.io/badge/maintained-yes-green.svg)](https://github.com/ashoktippaluri/ashoktippaluri.github.io/commits/master)
-[![Website shields.io](https://img.shields.io/badge/website-up-yellow)](http://ashoktippaluri.github.io/)
-[![Ask Me Anything !](https://img.shields.io/badge/ask%20me-linkedin-1abc9c.svg)](https://www.linkedin.com/in/ashoktippaluri/)
-[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+## Design
 
+The design follows the "Meridian" light editorial style: clean white cards, cobalt/azure accents, rounded corners, and subtle animations.
 
-## Features 📋
-⚡️ Fully Responsive\
-⚡️ Valid HTML5 & CSS3\
-⚡️ Typing animation using `Typed.js`\
-⚡️ Easy to modify
+## Pages
 
-## Installation & Deployment 📦
-- Clone the repository and modify the content of <b>index.html</b> according to your requirement.
-- Add or remove images from `ashoktippaluri.github.io/assets/img/` directory as per your requirement.
-- I highly recommend to use [Github Pages](https://create-react-app.dev/docs/deployment/#github-pages) to deploy the website the EASIEST WAY.
-- To deploy your website, first you need to create github repository with name `<your-github-username>.github.io`. Please don't give any other name.
-- Push the generated code to the `master` branch of this repository.
-- <b>NOTE:</b> Make sure to set `analyticsId` from your Google Analytics account inside the Google Analytics script tag, if you want to use your own Google Analytics account.
+- **Home** — Hero introduction with quick links
+- **About** — Background and focus areas
+- **Experience** — Work history timeline
+- **Skills** — Technologies and tools
+- **Projects** — Selected projects with links
+- **Education** — Academic background
+- **Contact** — Contact information and form
 
-## Sections 📚
-✔️ About me\
-✔️ Experience\
-✔️ Projects \
-✔️ Skills \
-✔️ Education\
-✔️ Contact Info\
-✔️ Resume
+## Development
 
-To view a live example, **[click here](https://ashoktippaluri.github.io/)**
+```bash
+# Install dependencies
+npm install
 
-## Tools Used 🛠️
-* [<b>GitHub Pages</b>](https://create-react-app.dev/docs/deployment/#github-pages) - To host my static website (HTML, CSS, JS).
-* [<b>Materialize</b>](https://materializecss.com/) - A CSS framework to get Google's Material Design components.
-* [<b>Typed.js</b>](https://mattboldt.com/demos/typed-js/) - JavaScript Library
+# Start development server
+npm run dev
 
-## Contributing 💡
-#### Step 1
+# Build for production
+npm run build
 
-- **Option 1**
-    - 🍴 Fork this repo!
+# Preview production build
+npm run preview
+```
 
-- **Option 2**
-    - 👯 Clone this repo to your local machine.
+## Deployment
 
+The site is configured for GitHub Pages. The `dist` folder is the build output. To deploy manually:
 
-#### Step 2
+```bash
+npm run build
+# Then push the dist folder contents to your gh-pages branch,
+# or enable GitHub Actions for automatic deployment.
+```
 
-- **Build your code** 🔨🔨🔨
+## Project Structure
 
-#### Step 3
+```
+├── public/            # Static assets
+│   ├── assets/img/    # Images and icons
+│   └── favicon.svg
+├── src/
+│   ├── components/    # Shared UI components
+│   ├── data/          # Portfolio content (profile.ts)
+│   ├── pages/         # Page components
+│   ├── App.tsx        # Router setup
+│   ├── main.tsx       # Entry point
+│   └── index.css      # Tailwind + custom styles
+├── index.html
+├── package.json
+├── tailwind.config.js
+├── postcss.config.js
+└── vite.config.ts
+```
 
-- 🔃 Create a new pull request.
+## License
 
-## License 📄
-This project is licensed under the MIT License - see the [LICENSE.md](./LICENSE) file for details.
+MIT — see [LICENSE](./LICENSE).
