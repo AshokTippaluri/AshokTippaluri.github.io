@@ -164,47 +164,6 @@ export const incidents = [
   },
 ];
 
-export const infraProjects = [
-  {
-    title: "Multi-AZ EKS platform with Terraform",
-    description:
-      "A reusable Terraform module set that provisions a production-shaped EKS cluster: multi-AZ VPC, managed node groups, IRSA-enabled service accounts, and cluster autoscaler.",
-    highlights: [
-      "VPC spans 3 AZs with public/private subnet separation and NAT gateways sized for cost vs. resilience tradeoffs.",
-      "Cluster uses IRSA so pods assume least-privilege IAM roles instead of node-wide credentials.",
-      "Autoscaling configured via Cluster Autoscaler with per-node-group scaling policies.",
-      "State managed in S3 with DynamoDB locking; environments (dev/qa/prod) isolated via separate workspaces.",
-    ],
-    tags: ["Terraform", "AWS", "EKS", "VPC", "IAM"],
-    repoUrl: "https://github.com/ashoktippaluri/eks-terraform-platform",
-  },
-  {
-    title: "GitOps CI/CD pipeline with Jenkins and ArgoCD",
-    description:
-      "An end-to-end deployment pipeline: Jenkins builds and tests the app, pushes an image, and ArgoCD syncs the new manifest to the cluster automatically.",
-    highlights: [
-      "Pipeline stages: lint → unit test → build image → scan with Trivy → push → update manifest repo.",
-      "ArgoCD watches the manifest repo and reconciles cluster state, giving a clear audit trail of every deploy.",
-      "Automatic rollback on failed health checks post-sync, verified with a chaos test that killed pods mid-rollout.",
-      "Reduced average deploy time from ~18 minutes (manual kubectl apply) to under 4 minutes.",
-    ],
-    tags: ["Jenkins", "ArgoCD", "Kubernetes", "Docker", "Trivy"],
-    repoUrl: "https://github.com/ashoktippaluri/gitops-cicd-pipeline",
-  },
-  {
-    title: "Observability stack: Prometheus, Grafana, and alerting",
-    description:
-      "A self-hosted monitoring stack with custom dashboards and alert rules for a Kubernetes cluster, including a simulated incident to validate detection speed.",
-    highlights: [
-      "Prometheus scrapes node, pod, and application metrics; Grafana dashboards cover cluster health, request latency, and error rate.",
-      "Alertmanager routes SEV-1/2 alerts to Slack with runbook links embedded in the alert payload.",
-      "Ran a controlled chaos test (pod-kill via Chaos Mesh) and measured time-to-alert: median 47 seconds.",
-    ],
-    tags: ["Prometheus", "Grafana", "Kubernetes", "Chaos Mesh"],
-    repoUrl: "https://github.com/ashoktippaluri/k8s-observability-stack",
-  },
-];
-
 export const quizQuestions = [
   {
     question: "In Kubernetes, what does a Liveness Probe determine?",
