@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { Section } from "../components/Section";
 import { Card } from "../components/Card";
+import { LearningBanner } from "../components/LearningBanner";
 import { personal, skills, experiences } from "../data/profile";
 
 export default function Home() {
@@ -18,6 +19,10 @@ export default function Home() {
 
   return (
     <>
+      <div className="bg-page pt-6">
+        <LearningBanner />
+      </div>
+
       {/* Hero */}
       <section className="relative overflow-hidden bg-white py-16 md:py-28">
         <div className="absolute inset-0 pointer-events-none">
