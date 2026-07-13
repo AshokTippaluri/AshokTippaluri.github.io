@@ -19,10 +19,6 @@ export default function Home() {
 
   return (
     <>
-      <div className="bg-page pt-6">
-        <LearningBanner />
-      </div>
-
       {/* Hero */}
       <section className="relative overflow-hidden bg-white py-16 md:py-28">
         <div className="absolute inset-0 pointer-events-none">
@@ -32,12 +28,15 @@ export default function Home() {
 
         <div className="relative mx-auto flex w-full max-w-[1200px] flex-col-reverse items-center gap-10 px-6 md:flex-row md:items-center md:gap-16 md:px-8">
           <div className="flex-1 text-center md:text-left">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-1 shadow-card">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-              </span>
-              <span className="text-xs font-semibold text-ink-65">Available for opportunities</span>
+            <div className="mb-4 flex flex-wrap items-center justify-center gap-3 md:justify-start">
+              <div className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-1 shadow-card">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                </span>
+                <span className="text-xs font-semibold text-ink-65">Available for opportunities</span>
+              </div>
+              <LearningBanner />
             </div>
             <h1 className="font-serif text-4xl font-bold leading-tight text-ink-95 md:text-5xl lg:text-6xl">
               Hi, I'm <span className="text-cobalt">{personal.name}</span>
