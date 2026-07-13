@@ -9,6 +9,8 @@ const links = [
   { to: "/experience", label: "Experience" },
   { to: "/skills", label: "Skills" },
   { to: "/projects", label: "Projects" },
+  { to: "/infra-projects", label: "Infra Deep-Dives" },
+  { to: "/incidents", label: "Incidents" },
   { to: "/education", label: "Education" },
   { to: "/contact", label: "Contact" },
 ];
