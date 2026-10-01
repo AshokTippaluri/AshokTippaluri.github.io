@@ -10,10 +10,10 @@ export const personal = {
   resume: "https://ashoktippaluri.github.io/assets/resume/AshokTippaluriResume.pdf",
   avatar: "/assets/img/passport.jpg",
   summary:
-    "Self-driven SRE / DevOps engineer passionate about building reliable, scalable infrastructure. I enjoy solving complex operational problems, automating repetitive work, and enabling teams to ship confidently.",
+    "SRE running production infrastructure for high-traffic media platforms. I operate Elasticsearch clusters, multi-region AWS environments, and Cloudflare edge — and I care about fast, boring deployments and clean decommissions.",
   about: [
-    "I am a graduate of a JNTUH-affiliated engineering college with a strong passion for problem-solving and continuous learning. Over the past several years I have worked across monitoring, cloud infrastructure, CI/CD, and container orchestration.",
-    "My day-to-day work involves AWS multi-account infrastructure, Kubernetes/EKS, Elasticsearch cluster operations, Cloudflare edge management, and AI platform infrastructure (LiteLLM, Langfuse, Bedrock). I am comfortable owning incidents end-to-end, improving deployment pipelines, and making systems more resilient.",
+    "I'm currently a Site Reliability Engineer at Dotdash Meredith, where I work on Elasticsearch operations (upgrades, blue/green migrations), multi-account AWS infrastructure (region decommissions, RDS, IAM), Cloudflare edge traffic, and AI platform tooling like LiteLLM gateways and Langfuse observability stacks.",
+    "I started as a NOC Analyst at Tanla monitoring telecom-scale infrastructure — where I learned that good alerts and honest postmortems matter more than heroics. I hold a B.Tech from a JNTUH-affiliated engineering college in Hyderabad.",
   ],
 };
 
