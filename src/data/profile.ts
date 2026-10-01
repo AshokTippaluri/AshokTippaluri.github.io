@@ -195,41 +195,60 @@ export const education = [
 
 export const incidents = [
   {
-    title: "Cascading pod restarts after a bad ConfigMap rollout",
-    date: "March 2024",
-    severity: "SEV-2",
-    summary:
-      "A ConfigMap update meant to tune JVM heap settings was rolled out cluster-wide without a canary step, causing OOMKilled loops across three services.",
-    detection:
-      "Grafana alert fired on elevated pod restart count and a spike in 5xx rate from the ingress controller within ~4 minutes of rollout.",
-    rootCause:
-      "The new ConfigMap set -Xmx higher than the container memory limit for two of the three affected deployments, so the JVM was OOMKilled by the kubelet almost immediately after each restart.",
-    resolution:
-      "Rolled back the ConfigMap via `kubectl rollout undo`, restoring stable pods within 6 minutes. Added a resource-limit-aware validation step to the Helm chart's CI lint stage.",
-    lessons: [
-      "Any ConfigMap affecting resource usage now goes through a canary namespace before cluster-wide rollout.",
-      "Added an admission check that rejects JVM heap settings exceeding the container memory limit.",
-      "MTTR was 11 minutes end-to-end; goal is under 5 minutes with the new canary gate.",
-    ],
-    tools: ["Kubernetes", "Grafana", "Helm", "CloudWatch"],
-  },
-  {
-    title: "CI/CD pipeline outage from expired Jenkins credentials",
-    date: "November 2023",
+    title: "Elasticsearch snapshot repo registration failing deploys (S3 cross-region redirect)",
+    date: "2026",
     severity: "SEV-3",
     summary:
-      "All Jenkins deployment jobs began failing at the artifact-push stage after a service account's AWS credentials expired without an automated renewal.",
+      "Post-deployment registration of an Elasticsearch snapshot repository kept failing, causing Jenkins to mark the whole deployment as failed.",
     detection:
-      "Build failure notifications in Slack and a spike in failed pipeline runs on the Jenkins dashboard; no customer-facing impact.",
+      "Jenkins deployment failed at the post-deploy stage; the registration script retried 10 times and exited non-zero.",
     rootCause:
-      "The IAM access key used by the Jenkins deploy stage was created manually 90 days prior and had no rotation automation or expiry alerting attached.",
+      "Elasticsearch sent the repository verification request to the ap-south-1 S3 endpoint, but the bucket lived in us-east-1. S3 returned HTTP 301 redirects that the registration never followed.",
     resolution:
-      "Issued a new access key, updated the Jenkins credential store, and re-ran the queued pipelines. Full recovery took about 25 minutes.",
+      "Corrected the repository configuration to use the bucket's actual region endpoint and re-ran the deployment successfully.",
     lessons: [
-      "Migrated the deploy stage to use an IAM role via OIDC federation instead of long-lived access keys.",
-      "Added a CloudWatch alarm on IAM access key age to catch this class of issue before it causes a failure.",
+      "Always pin the S3 endpoint/region explicitly in snapshot repository settings.",
+      "Cross-region S3 calls fail as silent 301 redirects — check HTTP status, not just connectivity.",
+      "Post-deploy verification scripts should fail fast with the underlying error surfaced.",
     ],
-    tools: ["Jenkins", "AWS IAM", "CloudWatch", "Slack"],
+    tools: ["Elasticsearch", "AWS S3", "Jenkins"],
+  },
+  {
+    title: "ECK upgrade breaking CI RBAC permissions",
+    date: "2026",
+    severity: "SEV-3",
+    summary:
+      "After an Elastic Cloud on Kubernetes operator upgrade, PR-test pipeline jobs began failing with RBAC 'forbidden' errors on the new Elastic CRDs.",
+    detection:
+      "CI jobs failed during cluster rolebinding with errors like 'attempting to grant RBAC permissions not currently held' for autoops.k8s.elastic.co resources.",
+    rootCause:
+      "The ECK upgrade introduced new CRDs (autoopsagentpolicies, packageregistries) that the deployer's cluster role had no permissions for, so RBAC escalation checks rejected the grants.",
+    resolution:
+      "Extended the deployer cluster role with the new API groups/resources and re-ran the pipeline tests to green.",
+    lessons: [
+      "Operator upgrades can add CRDs — review release notes for new API groups before upgrading.",
+      "CI deployer roles need wildcard or updated rules for operator-managed CRDs.",
+    ],
+    tools: ["Kubernetes", "ECK", "RBAC", "Jenkins"],
+  },
+  {
+    title: "AWS S3 egress cost spike investigated as possible security incident",
+    date: "2025",
+    severity: "SEV-3",
+    summary:
+      "An unusual spike in S3 data-egress spend triggered a security review for possible data exfiltration or misconfigured public access.",
+    detection:
+      "Cost anomaly flagged in billing review; raised as a potential security incident ticket.",
+    rootCause:
+      "Traced egress to a legitimate but inefficient access pattern rather than a breach — a workload pulling large objects across boundaries.",
+    resolution:
+      "Confirmed no unauthorized access via IAM/CloudTrail review, then reduced cost by fixing the access pattern and tightening bucket policies.",
+    lessons: [
+      "Cost anomalies are worth treating as security signals until ruled out.",
+      "CloudTrail + IAM access analysis is the fastest way to separate exfiltration from waste.",
+      "Bucket policies and VPC endpoints prevent both exposure and unnecessary egress cost.",
+    ],
+    tools: ["AWS S3", "IAM", "CloudTrail", "CloudWatch"],
   },
 ];
 
@@ -453,48 +472,45 @@ export const quizQuestions = [
 
 export const projects = [
   {
-    title: "Music Player Web App",
-    description: "A Django-based music streaming web application with playlists, search, and OAuth login.",
-    image: "/assets/img/project-music-player.png",
-    tags: ["Django", "HTML", "CSS", "SQLite", "AWS S3", "Heroku"],
-    liveUrl: "https://galvanic-music.herokuapp.com/",
-    repoUrl: "https://github.com/ashoktippaluri/music-player",
+    title: "Terraform AWS Infrastructure",
+    description: "Modular Terraform code for provisioning AWS infrastructure — launching a web server with networking and security configured as code.",
+    image: "/assets/img/terraform-svgrepo-com.svg",
+    tags: ["Terraform", "AWS", "IaC", "HCL"],
+    repoUrl: "https://github.com/AshokTippaluri/Terraform_project",
   },
   {
-    title: "Quiz Web App",
-    description: "A quiz platform built with Django, featuring leaderboards and Google OAuth sign-in.",
-    image: "/assets/img/project-quizup-logo-1.png",
-    tags: ["Django", "HTML", "CSS", "SQLite", "Heroku"],
-    liveUrl: "https://quiz-up-app.herokuapp.com/",
-    repoUrl: "https://github.com/ashoktippaluri/QuizUp",
+    title: "Jenkins Shared Pipeline Library",
+    description: "Reusable Groovy shared library for Jenkins pipelines — standardized build, test, and deploy stages consumed across teams' CI jobs.",
+    image: "/assets/img/jenkins-icon.svg",
+    tags: ["Jenkins", "Groovy", "CI/CD"],
+    repoUrl: "https://github.com/AshokTippaluri/ashok-shared-library",
   },
   {
-    title: "Blog Web App",
-    description: "A simple and extensible blog built with Flask and SQLAlchemy.",
-    image: "/assets/img/project-blog-logo.jpg",
-    tags: ["HTML", "CSS", "Flask", "SQLAlchemy", "PostgreSQL", "Python"],
-    liveUrl: "https://flask-heroku-blog.herokuapp.com/",
-    repoUrl: "https://github.com/ashoktippaluri/flask-blog",
+    title: "SRE Deep Dive",
+    description: "Hands-on notes and scripts from production SRE work — reliability patterns, incident handling, and operational runbooks.",
+    image: "/assets/img/shell-logo-1-300x300.jpg",
+    tags: ["SRE", "Shell", "Runbooks", "Reliability"],
+    repoUrl: "https://github.com/AshokTippaluri/sre-deepdrive",
   },
   {
-    title: "Visual Question Answering",
-    description: "An attention-based classification model that generates answers for input images using CNN and LSTM.",
-    image: "/assets/img/project-aim_bert-bias.png",
-    tags: ["Python", "CNN", "LSTM", "VQA"],
-    repoUrl: "https://github.com/ashoktippaluri/visual-question-answering",
+    title: "Linux Deep Dive",
+    description: "Linux internals and shell scripting deep-dive — system administration, troubleshooting, and automation notes.",
+    image: "/assets/img/linux-original.svg",
+    tags: ["Linux", "Bash", "Shell"],
+    repoUrl: "https://github.com/AshokTippaluri/linux-deepdrive",
   },
   {
-    title: "Video Summarizer",
-    description: "A sequence-to-sequence model that generates short summaries from input videos.",
-    image: "/assets/img/computer-vision-v2-04.png",
-    tags: ["Python", "CNN", "LSTM", "Computer Vision"],
-    repoUrl: "https://github.com/ashoktippaluri/",
+    title: "Kubernetes Labs",
+    description: "Kubernetes learning labs — manifests, workloads, and cluster configuration exercises.",
+    image: "/assets/img/kubernetes-icon.svg",
+    tags: ["Kubernetes", "YAML", "Containers"],
+    repoUrl: "https://github.com/AshokTippaluri/k8_ashok",
   },
   {
-    title: "Image Generator",
-    description: "An image generator based on Generative Adversarial Networks (GANs).",
-    image: "/assets/img/gan.jpg",
-    tags: ["Python", "GANs", "Deep Learning"],
-    repoUrl: "https://github.com/ashoktippaluri/",
+    title: "Docker Project",
+    description: "Containerization hands-on project — building, shipping, and running containerized applications with Docker.",
+    image: "/assets/img/docker-original-wordmark.svg",
+    tags: ["Docker", "Containers"],
+    repoUrl: "https://github.com/AshokTippaluri/Docker_project",
   },
 ];
