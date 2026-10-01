@@ -13,7 +13,7 @@ export const personal = {
     "Self-driven SRE / DevOps engineer passionate about building reliable, scalable infrastructure. I enjoy solving complex operational problems, automating repetitive work, and enabling teams to ship confidently.",
   about: [
     "I am a graduate of a JNTUH-affiliated engineering college with a strong passion for problem-solving and continuous learning. Over the past several years I have worked across monitoring, cloud infrastructure, CI/CD, and container orchestration.",
-    "My day-to-day work involves AWS, Kubernetes, Terraform, Jenkins, and observability tooling. I am comfortable owning incidents end-to-end, improving deployment pipelines, and making systems more resilient.",
+    "My day-to-day work involves AWS multi-account infrastructure, Kubernetes/EKS, Elasticsearch cluster operations, Cloudflare edge management, and AI platform infrastructure (LiteLLM, Langfuse, Bedrock). I am comfortable owning incidents end-to-end, improving deployment pipelines, and making systems more resilient.",
   ],
 };
 
@@ -80,14 +80,24 @@ export const skills = [
     ],
   },
   {
-    category: "Languages & Databases",
+    category: "Edge & DNS",
+    items: [
+      { name: "Cloudflare", icon: "/assets/img/cloudflare-icon.svg" },
+    ],
+  },
+  {
+    category: "Languages & Data Stores",
     items: [
       { name: "Python", icon: "/assets/img/python-logo-1-300x300.jpg" },
       { name: "Shell", icon: "/assets/img/shell-logo-1-300x300.jpg" },
       { name: "Go", icon: "/assets/img/go-original.svg" },
       { name: "Terraform", icon: "/assets/img/terraform-svgrepo-com.svg" },
+      { name: "Elasticsearch", icon: "/assets/img/elasticsearch-icon.svg" },
+      { name: "ClickHouse", icon: "/assets/img/clickhouse-icon.svg" },
+      { name: "Redis", icon: "/assets/img/redis-original-wordmark.svg" },
       { name: "MySQL", icon: "/assets/img/mysql-logo-1-300x300.jpg" },
       { name: "PostgreSQL", icon: "/assets/img/postgresql-logo.png" },
+      { name: "MongoDB", icon: "/assets/img/mongodb-original-wordmark.svg" },
     ],
   },
   {
@@ -97,6 +107,7 @@ export const skills = [
       { name: "Windows", icon: "/assets/img/windows.svg" },
       { name: "Kubernetes", icon: "/assets/img/kubernetes-icon.svg" },
       { name: "Docker", icon: "/assets/img/docker-original-wordmark.svg" },
+      { name: "Helm", icon: "/assets/img/helmsh-icon.svg" },
       { name: "Vagrant", icon: "/assets/img/vagrantup-icon.svg" },
     ],
   },
@@ -116,6 +127,8 @@ export const skills = [
     items: [
       { name: "Jenkins", icon: "/assets/img/jenkins-icon.svg" },
       { name: "Git", icon: "/assets/img/git-scm-icon.svg" },
+      { name: "GitHub", icon: "/assets/img/github-original.svg" },
+      { name: "Bitbucket", icon: "/assets/img/bitbucket-original.svg" },
       { name: "RabbitMQ", icon: "/assets/img/rabbitmq-icon.svg" },
       { name: "SonarQube", icon: "/assets/img/sonarqube-1.svg" },
       { name: "Maven", icon: "/assets/img/apache-maven-1.svg" },
@@ -125,6 +138,8 @@ export const skills = [
   {
     category: "AI Tools",
     items: [
+      { name: "LiteLLM", icon: "https://img.shields.io/badge/LiteLLM-000000?style=flat" },
+      { name: "ChatGPT", icon: "https://img.shields.io/badge/ChatGPT-412991?style=flat" },
       { name: "Codex", icon: "/assets/img/ai-logos/codex.svg" },
       { name: "Claude", icon: "/assets/img/ai-logos/claude.svg" },
       { name: "Devin", icon: "/assets/img/ai-logos/devin.svg" },
@@ -144,12 +159,13 @@ export const experiences = [
     logo: "/assets/img/Dotdash-Meredith-Logo-Color.png-3-8-22-2.webp",
     website: "https://www.dotdashmeredith.com/",
     highlights: [
-      "Support and improve cloud infrastructure on AWS for high-traffic media platforms.",
-      "Build and maintain CI/CD pipelines using Jenkins and Git for reliable, repeatable deployments.",
-      "Automate infrastructure provisioning with Terraform and manage containerized workloads on Kubernetes / EKS.",
-      "Troubleshoot production issues, tune monitoring, and participate in incident response using Grafana, CloudWatch, and PagerDuty-style workflows.",
+      "Operate and scale production Elasticsearch clusters — provisioning, 8.x to 9.x upgrades, blue/green migrations, and ECK operator management via Helm.",
+      "Manage multi-account, multi-region AWS infrastructure — region decommissions, RDS snapshot/backup strategies, cross-account S3 and IAM access.",
+      "Own edge traffic on Cloudflare — DNS, domain migrations, vanity URLs, and redirect pipelines for high-traffic media brands.",
+      "Run AI platform infrastructure — LiteLLM gateways, Langfuse observability (ClickHouse, Redis), and AWS Bedrock service launches.",
+      "Remediate cloud security findings and decommission legacy services safely, cutting cost and attack surface.",
     ],
-    tools: ["AWS", "Terraform", "Jenkins", "Kubernetes", "Docker", "Grafana", "Python", "Git"],
+    tools: ["AWS", "Elasticsearch", "Cloudflare", "Kubernetes", "Helm", "Terraform", "Jenkins", "Docker", "LiteLLM", "Grafana", "Python", "Git"],
   },
   {
     company: "Tanla",
